@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "717021286462",
+    "project_id": "talad-77689",
+    "storage_bucket": "talad-77689.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717021286462:android:f3c7adf1931e7f1717016f",
+        "android_client_info": {
+          "package_name": "com.talad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717021286462-qdqs44iaekgit5r71nmp8m7aqtuhnnuh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.talad",
+            "certificate_hash": "8128123a678f9e279113ae8aa43acc2682b24d68"
+          }
+        },
+        {
+          "client_id": "717021286462-0ijcnvhm8fmecg23o3o2ksaq2c7oskl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw9I5Y9kEiC1T-VQHMipZog3wpnqH6Mlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717021286462-0ijcnvhm8fmecg23o3o2ksaq2c7oskl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
