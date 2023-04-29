@@ -14,15 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "717021286462-qdqs44iaekgit5r71nmp8m7aqtuhnnuh.apps.googleusercontent.com",
+          "client_id": "717021286462-cct5k08ddfqdpgbr9v782jnob5g4su63.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.talad",
-            "certificate_hash": "8128123a678f9e279113ae8aa43acc2682b24d68"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
-          "client_id": "717021286462-0ijcnvhm8fmecg23o3o2ksaq2c7oskl8.apps.googleusercontent.com",
+          "client_id": "717021286462-jvsop9p5diouriouadledu59hint4uri.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -37,6 +37,13 @@
             {
               "client_id": "717021286462-0ijcnvhm8fmecg23o3o2ksaq2c7oskl8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "717021286462-tsdvh7vnkiorcq83o63o8edjfjmgn583.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.name.Talad"
+              }
             }
           ]
         }
