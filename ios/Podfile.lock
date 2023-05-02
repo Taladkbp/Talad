@@ -1,4 +1,10 @@
 PODS:
+  - AppAuth (1.6.2):
+    - AppAuth/Core (= 1.6.2)
+    - AppAuth/ExternalUserAgent (= 1.6.2)
+  - AppAuth/Core (1.6.2)
+  - AppAuth/ExternalUserAgent (1.6.2):
+    - AppAuth/Core
   - boost (1.76.0)
   - DoubleConversion (1.1.6)
   - EXApplication (5.1.1):
@@ -14,6 +20,10 @@ PODS:
   - ExpoAdapterFBSDKNext (11.2.1):
     - ExpoModulesCore
     - FBSDKCoreKit
+    - React-Core
+  - ExpoAdapterGoogleSignIn (9.0.2):
+    - ExpoModulesCore
+    - GoogleSignIn (~> 6.2)
     - React-Core
   - ExpoKeepAwake (12.0.1):
     - ExpoModulesCore
@@ -46,8 +56,16 @@ PODS:
     - FBSDKCoreKit (= 15.0.0)
   - FBSDKShareKit (15.0.0):
     - FBSDKCoreKit (= 15.0.0)
+  - Firebase/Auth (10.7.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 10.7.0)
   - Firebase/CoreOnly (10.7.0):
     - FirebaseCore (= 10.7.0)
+  - FirebaseAuth (10.7.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - FirebaseCore (10.7.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -56,11 +74,29 @@ PODS:
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - fmt (6.2.1)
   - glog (0.3.5)
+  - GoogleSignIn (6.2.4):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (~> 1.3)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
+  - GoogleUtilities/AppDelegateSwizzler (7.11.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.11.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - GoogleUtilities/Reachability (7.11.1):
+    - GoogleUtilities/Logger
+  - GTMAppAuth (1.3.1):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
+  - GTMSessionFetcher/Core (2.3.0)
   - hermes-engine (0.71.6):
     - hermes-engine/Pre-built (= 0.71.6)
   - hermes-engine/Pre-built (0.71.6)
@@ -422,8 +458,17 @@ PODS:
     - React-jsi (= 0.71.6)
     - React-logger (= 0.71.6)
     - React-perflogger (= 0.71.6)
+  - RNAppleAuthentication (2.2.2):
+    - React-Core
   - RNFBApp (17.4.3):
     - Firebase/CoreOnly (= 10.7.0)
+    - React-Core
+  - RNFBAuth (17.4.3):
+    - Firebase/Auth (= 10.7.0)
+    - React-Core
+    - RNFBApp
+  - RNGoogleSignin (9.0.2):
+    - GoogleSignIn (~> 6.2)
     - React-Core
   - RNScreens (3.20.0):
     - React-Core
@@ -441,6 +486,7 @@ DEPENDENCIES:
   - EXFont (from `../node_modules/expo-font/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAdapterFBSDKNext (from `../node_modules/react-native-fbsdk-next/ios`)
+  - "ExpoAdapterGoogleSignIn (from `../node_modules/@react-native-google-signin/google-signin/expo/ios`)"
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
@@ -479,13 +525,17 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNAppleAuthentication (from `../node_modules/@invertase/react-native-apple-authentication`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
+  - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - AppAuth
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -493,10 +543,14 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - Firebase
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreInternal
     - fmt
+    - GoogleSignIn
     - GoogleUtilities
+    - GTMAppAuth
+    - GTMSessionFetcher
     - libevent
     - PromisesObjC
 
@@ -517,6 +571,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo"
   ExpoAdapterFBSDKNext:
     :path: "../node_modules/react-native-fbsdk-next/ios"
+  ExpoAdapterGoogleSignIn:
+    :path: "../node_modules/@react-native-google-signin/google-signin/expo/ios"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
@@ -589,8 +645,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNAppleAuthentication:
+    :path: "../node_modules/@invertase/react-native-apple-authentication"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
+  RNFBAuth:
+    :path: "../node_modules/@react-native-firebase/auth"
+  RNGoogleSignin:
+    :path: "../node_modules/@react-native-google-signin/google-signin"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -599,6 +661,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   EXApplication: d8f53a7eee90a870a75656280e8d4b85726ea903
@@ -607,6 +670,7 @@ SPEC CHECKSUMS:
   EXFont: 6ea3800df746be7233208d80fe379b8ed74f4272
   Expo: 80f53b6199ecaf1bb4e156924240a9e6d6194255
   ExpoAdapterFBSDKNext: fe88e4f8f0afbb717402bce98042156e160e6de5
+  ExpoAdapterGoogleSignIn: 98a113d9c0ed1ce7cf6259f0907d3f93209b0d7f
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
   ExpoModulesCore: 6e0259511f4c4341b6b8357db393624df2280828
   EXSplashScreen: cd7fb052dff5ba8311d5c2455ecbebffe1b7a8ca
@@ -619,11 +683,15 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 11995469cd7da16fd4d5245e8d2ec61060479270
   FBSDKShareKit: 9501792c3024580809f811a8a549868699d9bd32
   Firebase: 0219acf760880eeec8ce479895bd7767466d9f81
+  FirebaseAuth: dd64c01631df724b09f33e584625775c52f7d71f
   FirebaseCore: e317665b9d744727a97e623edbbed009320afdd7
   FirebaseCoreInternal: d2b4acb827908e72eca47a9fd896767c3053921e
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
+  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   hermes-engine: b434cea529ad0152c56c7cb6486b0c4c0b23b5de
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
@@ -656,11 +724,14 @@ SPEC CHECKSUMS:
   React-RCTVibration: 73d201599a64ea14b4e0b8f91b64970979fd92e6
   React-runtimeexecutor: 8692ac548bec648fa121980ccb4304afd136d584
   ReactCommon: 0982e4657e0ecdc3a90858fbb529d54cd0be8fb4
+  RNAppleAuthentication: 0571c08da8c327ae2afc0261b48b4a515b0286a6
   RNFBApp: 922564a99c97a8cab366d5a918f9fecff6b563d5
+  RNFBAuth: 55fd07310abde3fa2f3a6568f6d3ef590383d241
+  RNGoogleSignin: 22e468a9474dbcb8618d8847205ad4f0b2575d13
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
 
-PODFILE CHECKSUM: 6f0f2ec42378fb29227471b0c481fd830fc7ade6
+PODFILE CHECKSUM: f8fe55446b04e2207fc0bdffede813eff52eb7ed
 
 COCOAPODS: 1.12.1
