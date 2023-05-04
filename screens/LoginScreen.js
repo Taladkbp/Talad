@@ -15,13 +15,24 @@ const LoginScreen = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
 
-  //Setting Email and Password for Signup or Login
+  // Setting Email and Password for Signup or Login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('')
 
+  // Phone number verification
+  const [confirm, setConfirm] = useState(null);
+  const [code, setCode] = useState('');
+
   function onAuthStateChanged(user) {
     setUser(user);
+    if (user) {
+      if (user.phoneNumber) {
+        alert(`You have successfully logged in with your phone number: ${user.phoneNumber}`);
+      } else {
+        alert('You have successfully logged in!');
+      }
+    }
     if (initializing) setInitializing(false);
   }
 
@@ -32,7 +43,7 @@ const LoginScreen = () => {
 
   if (initializing) return null;
 
-  if (!user) {
+  if (!user || !user.phoneNumber) {
     return (
       <SafeAreaView className='relative'>
       <View>
@@ -63,6 +74,16 @@ const LoginScreen = () => {
         title="Google Sign-In"
         onPress={onGoogleButtonPress}
       />
+      <Button
+        title="Phone Number Sign In"
+        onPress={() => signInWithPhoneNumber('+856 20 59 913 366', setConfirm)}
+      />
+      <TextInput
+        value={code}
+        onChangeText={text => setCode(text)}
+        placeholder="Enter the code"
+      />
+      <Button title="Confirm Code" onPress={() => confirmCode(code, confirm)} />
       {Platform.OS === 'ios' && (
         <AppleButton
           buttonStyle={AppleButton.Style.WHITE}
@@ -81,11 +102,12 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView className='relative'>
-      <Text>Welcome {user.email}</Text>
+      <Text>Welcome {user.email || user.phoneNumber}</Text>
       <Button
         title="Sign Out"
         onPress={() => onSignOutButtonPress().then(() => console.log('Signed Out'))}
       />
+      
     </SafeAreaView>
   )
 }
@@ -154,7 +176,7 @@ const onGoogleButtonPress = async () => {
   console.log('Signed in with Facebook!')
 }
 
-async function onAppleButtonPress() {
+const onAppleButtonPress = async () => {
   // Start the sign-in request
   const appleAuthRequestResponse = await appleAuth.performRequest({
     requestedOperation: appleAuth.Operation.LOGIN,
@@ -174,13 +196,32 @@ async function onAppleButtonPress() {
   return auth().signInWithCredential(appleCredential);
 }
 
-const onSignOutButtonPress = async () => {
+const signInWithPhoneNumber = async (phoneNumber, setConfirm) => {
   try {
+    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+    console.log('Confirmation:', confirmation);
+    setConfirm(confirmation);
+  } catch (error) {
+    console.error('Error during phone number sign-in:', error);
+  }
+}
+
+const confirmCode = async (code, confirm) => {
+  try {
+    if (confirm) {
+      await confirm.confirm(code);
+      console.log('Phone number successfully verified');
+    } else {
+      console.log('No confirmation object to confirm the code');
+    }
+  } catch (error) {
+    console.log('Error:', error);
+  }
+}
+
+const onSignOutButtonPress = async () => {
     await auth().signOut();
     console.log('User signed out!');
-  } catch (error) {
-    console.error('Error signing out:', error);
-  }
 }
 
 export default LoginScreen
