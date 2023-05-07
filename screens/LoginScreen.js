@@ -2,6 +2,7 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { useEffect, useState } from 'react';
 import { Button, SafeAreaView, Text, TextInput, View, Platform } from 'react-native';
+
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
@@ -18,7 +19,7 @@ const LoginScreen = () => {
   // Setting Email and Password for Signup or Login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Phone number verification
   const [confirm, setConfirm] = useState(null);
@@ -117,7 +118,7 @@ const onSignInButtonPress = (email, password, setErrorMessage) => {
     console.log('Please enter an email and password.');
     setErrorMessage('Please enter an email and password.');
     return;
-  }
+  };
 
   auth()
   .createUserWithEmailAndPassword(email, password)
@@ -137,7 +138,7 @@ const onSignInButtonPress = (email, password, setErrorMessage) => {
 
     console.error(error);
   });
-}
+};
 
 const onFacebookButtonPress = async () => {
   // Attempt login with permissions
@@ -160,7 +161,7 @@ const onFacebookButtonPress = async () => {
   // Sign-in the user with the credential
   return auth().signInWithCredential(facebookCredential);
   console.log('Signed in with Facebook!')
-}
+};
 
 const onGoogleButtonPress = async () => {
   // Check if your device supports Google Play
@@ -174,7 +175,7 @@ const onGoogleButtonPress = async () => {
   // Sign-in the user with the credential
   return auth().signInWithCredential(googleCredential);
   console.log('Signed in with Facebook!')
-}
+};
 
 const onAppleButtonPress = async () => {
   // Start the sign-in request
@@ -194,7 +195,7 @@ const onAppleButtonPress = async () => {
 
   // Sign the user in with the credential
   return auth().signInWithCredential(appleCredential);
-}
+};
 
 const signInWithPhoneNumber = async (phoneNumber, setConfirm) => {
   try {
@@ -204,7 +205,7 @@ const signInWithPhoneNumber = async (phoneNumber, setConfirm) => {
   } catch (error) {
     console.error('Error during phone number sign-in:', error);
   }
-}
+};
 
 const confirmCode = async (code, confirm) => {
   try {
@@ -217,11 +218,11 @@ const confirmCode = async (code, confirm) => {
   } catch (error) {
     console.log('Error:', error);
   }
-}
+};
 
 const onSignOutButtonPress = async () => {
     await auth().signOut();
     console.log('User signed out!');
-}
+};
 
 export default LoginScreen

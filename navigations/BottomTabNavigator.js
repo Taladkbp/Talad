@@ -23,7 +23,7 @@ import { HomeIcon as HomeIconOutline,
 
 const Tab = createBottomTabNavigator()
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = (theme) => {
   return (
     <Tab.Navigator 
       initialRouteName='Home'
@@ -51,7 +51,7 @@ const BottomTabNavigator = () => {
           
           return iconName
         },
-        tabBarActiveTintColor: '#FF6347',
+        tabBarActiveTintColor: '#4CAF50',
         tabBarInactiveTintColor: '#808080',
       })}>
 
@@ -62,8 +62,6 @@ const BottomTabNavigator = () => {
       <Tab.Screen name='Login' component={LoginScreen}/>
       <Tab.Screen name='PhoneVerification' component={PhoneVerificationScreen}/>
       <Tab.Screen name='ProfileSetup' component={ProfileSetupScreen}/>
-
-
       
     </Tab.Navigator>
   )
