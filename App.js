@@ -1,8 +1,10 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomTabNavigator from './navigations/BottomTabNavigator';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import AppNavigator from './navigations/AppNavigator';
+import BottomTabNavigator from './navigations/UserTabNavigator';
 
 const theme = {
   ...DefaultTheme,
@@ -26,7 +28,7 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <BottomTabNavigator/>
+        <AppNavigator/>
       </NavigationContainer>
     </PaperProvider>
   );
