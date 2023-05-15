@@ -9,7 +9,7 @@ const AuthNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false}}>
       <Stack.Screen
-        name='PhoneVerificaion'
+        name='PhoneVerification'
         component={PhoneVerificationScreen}
         options={{headerShown: false}}
       />
