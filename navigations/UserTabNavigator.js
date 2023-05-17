@@ -21,9 +21,11 @@ import { HomeIcon as HomeIconOutline,
     ChartBarSquareIcon as ChartBarSquareIconOutline,
   } from 'react-native-heroicons/outline'
 
+import { activeTabColor, inactiveTabColor } from '../src/theme/colors.js'
+
 const Tab = createBottomTabNavigator()
 
-const BottomTabNavigator = (theme) => {
+const UserTabNavigator = () => {
   return (
     <Tab.Navigator 
       initialRouteName='Home'
@@ -47,14 +49,12 @@ const BottomTabNavigator = (theme) => {
           } else if (route.name === 'ProfileSetup') {
             iconName = focused ? <ChartBarSquareIconSolid color={color} size={size}/> : <ChartBarSquareIconOutline color={color} size={size}/>;
           } 
-          
-          
           return iconName
         },
-        tabBarActiveTintColor: '#4CAF50',
-        tabBarInactiveTintColor: '#808080',
+        tabBarActiveTintColor: activeTabColor,
+        tabBarInactiveTintColor: inactiveTabColor,
       })}>
-
+      
       <Tab.Screen name='Home' component={HomeScreen}/>
       <Tab.Screen name='Livestream' component={LivestreamScreen}/>
       <Tab.Screen name='Shop' component={ShopScreen}/>
@@ -62,9 +62,7 @@ const BottomTabNavigator = (theme) => {
       <Tab.Screen name='Login' component={LoginScreen}/>
       <Tab.Screen name='PhoneVerification' component={PhoneVerificationScreen}/>
       <Tab.Screen name='ProfileSetup' component={ProfileSetupScreen}/>
-      
     </Tab.Navigator>
   )
 }
-
-export default BottomTabNavigator
+export default UserTabNavigator

@@ -5,9 +5,13 @@ import { View, Text } from 'react-native'
 const ShopScreen = () => {
   return (
     <SafeAreaView className='relative'>
-        <View className='flex flex-row justify-around bg-neutral-400 absolute bottom-0 left-0'>
+
             <Text>ShopScreen</Text>
-        </View>
+            <Text>ShopScreen</Text>
+            <Text>ShopScreen</Text>
+            <Text>ShopScreen</Text>
+            <Text>ShopScreen</Text>
+
     </SafeAreaView>
   )
 }
