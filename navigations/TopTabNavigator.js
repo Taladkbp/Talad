@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useMemo, useRef } from 'react'
 import { UserCircleIcon } from 'react-native-heroicons/solid';
-import { BuildingStorefrontIcon } from 'react-native-heroicons/outline';
+import { BuildingStorefrontIcon } from 'react-native-heroicons/solid';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../src/theme/colors.js'
 import { TouchableOpacity, View } from 'react-native';
@@ -14,9 +14,10 @@ const TopTabNavigator = () => {
     <SafeAreaView>
       <View className='flex-row p-2 justify-between'>
         <TouchableOpacity onPress={openSheet}>
-          <UserCircleIcon color={Colors.primary} size={34}/>
+          <UserCircleIcon color={Colors.onAccent} size={34}/>
         </TouchableOpacity>
         <Button
+          buttonColor={Colors.priaccentmary}
           mode='contained'
           icon={({ color, size }) => <BuildingStorefrontIcon color={'#ffffff'} size={22} />}
           contentStyle={{ height: 34, justifyContent: 'center' }}

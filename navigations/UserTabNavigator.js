@@ -42,13 +42,7 @@ const UserTabNavigator = () => {
             iconName = focused ? <BuildingStorefrontIconSolid color={color} size={size}/> : <BuildingStorefrontIconOutline color={color} size={size}/>;
           } else if (route.name === 'Analytics') {
             iconName = focused ? <ChartBarSquareIconSolid color={color} size={size}/> : <ChartBarSquareIconOutline color={color} size={size}/>;
-          } else if (route.name === 'Login') {
-            iconName = focused ? <ChartBarSquareIconSolid color={color} size={size}/> : <ChartBarSquareIconOutline color={color} size={size}/>;
-          } else if (route.name === 'PhoneVerification') {
-            iconName = focused ? <ChartBarSquareIconSolid color={color} size={size}/> : <ChartBarSquareIconOutline color={color} size={size}/>;
-          } else if (route.name === 'ProfileSetup') {
-            iconName = focused ? <ChartBarSquareIconSolid color={color} size={size}/> : <ChartBarSquareIconOutline color={color} size={size}/>;
-          } 
+          }
           return iconName
         },
         tabBarActiveTintColor: activeTabColor,
@@ -59,9 +53,6 @@ const UserTabNavigator = () => {
       <Tab.Screen name='Livestream' component={LivestreamScreen}/>
       <Tab.Screen name='Shop' component={ShopScreen}/>
       <Tab.Screen name='Analytics' component={AnalyticsScreen}/>
-      <Tab.Screen name='Login' component={LoginScreen}/>
-      <Tab.Screen name='PhoneVerification' component={PhoneVerificationScreen}/>
-      <Tab.Screen name='ProfileSetup' component={ProfileSetupScreen}/>
     </Tab.Navigator>
   )
 }

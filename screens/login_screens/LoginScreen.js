@@ -2,10 +2,13 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { useEffect, useState } from 'react';
 import { Button, SafeAreaView, Text, TextInput, View, Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import BackButton from '../../components/BackButton';
 
 GoogleSignin.configure({
   webClientId: '717021286462-jvsop9p5diouriouadledu59hint4uri.apps.googleusercontent.com',
@@ -20,10 +23,6 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // Phone number verification
-  const [confirm, setConfirm] = useState(null);
-  const [code, setCode] = useState('');
 
   function onAuthStateChanged(user) {
     setUser(user);
@@ -46,7 +45,8 @@ const LoginScreen = () => {
 
   if (!user || !user.phoneNumber) {
     return (
-      <SafeAreaView className='relative'>
+      <SafeAreaView className='flex-1 justify-center px-5'>
+      <BackButton/>
       <View>
         <Text>Email:</Text>
         <TextInput
@@ -54,6 +54,7 @@ const LoginScreen = () => {
           value={email}
           keyboardType="email-address"
           autoCapitalize="none"
+          className='border border-gray-300 p-2 rounded-md'
         />
         <Text>Password:</Text>
         <TextInput
@@ -61,30 +62,36 @@ const LoginScreen = () => {
           value={password}
           secureTextEntry
           autoCapitalize="none"
+          className='border border-gray-300 p-2 rounded-md my-4'
         />
       </View>
-      <Button
-        title="Sign In" 
+      <TouchableOpacity
         onPress={() => onSignInButtonPress(email, password, setErrorMessage)}
-      />
-      <Button
-        title="Facebook Sign-In"
+        className='flex-row items-center justify-center bg-blue-500 py-3 rounded-md mb-4'
+      >
+        <Text className='text-white text-lg'>Sign In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={onFacebookButtonPress}
-      />
-      <Button
-        title="Google Sign-In"
+        className='flex-row items-center justify-center bg-blue-600 py-3 rounded-md mb-2'
+      >
+        <Icon name='facebook-square' size={20} color='white'/>
+        <Text className='text-white text-lg ml-2'>Facebook Log-In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         onPress={onGoogleButtonPress}
-      />
-      <Button
-        title="Phone Number Sign In"
-        onPress={() => signInWithPhoneNumber('+856 20 59 913 366', setConfirm)}
-      />
-      <TextInput
-        value={code}
-        onChangeText={text => setCode(text)}
-        placeholder="Enter the code"
-      />
-      <Button title="Confirm Code" onPress={() => confirmCode(code, confirm)} />
+        className='flex-row items-center justify-center bg-red-500 py-3 rounded-md mb-2'
+      >
+        <Icon name="google" size={20} color="white" />
+        <Text className='text-white text-lg ml-2'>Google Log-In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        className='flex-row items-center justify-center bg-violet-600 py-3 rounded-md mb-4'
+      >
+        <Icon name="envelope" size={20} color="white" />
+        <Text className='text-white text-lg ml-2'>Email Sign Up</Text>
+      </TouchableOpacity>
+
       {Platform.OS === 'ios' && (
         <AppleButton
           buttonStyle={AppleButton.Style.WHITE}
@@ -98,19 +105,9 @@ const LoginScreen = () => {
       )}
       {errorMessage ? <Text style={{ color: 'red' }}>{errorMessage}</Text> : null}
     </SafeAreaView>
+
     );
   }
-
-  return (
-    <SafeAreaView className='relative'>
-      <Text>Welcome {user.email || user.phoneNumber}</Text>
-      <Button
-        title="Sign Out"
-        onPress={() => onSignOutButtonPress().then(() => console.log('Signed Out'))}
-      />
-      
-    </SafeAreaView>
-  )
 }
 
 const onSignInButtonPress = (email, password, setErrorMessage) => {
