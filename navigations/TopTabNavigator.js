@@ -7,17 +7,16 @@ import { TouchableOpacity, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import BottomSheetContext from '../components/BottomSheetContext.js';
 
-
 const TopTabNavigator = () => {
   const openSheet = useContext(BottomSheetContext)
   return (
     <SafeAreaView>
       <View className='flex-row p-2 justify-between'>
         <TouchableOpacity onPress={openSheet}>
-          <UserCircleIcon color={Colors.onAccent} size={34}/>
+          <UserCircleIcon color={Colors.onUserIcon} size={34}/>
         </TouchableOpacity>
         <Button
-          buttonColor={Colors.priaccentmary}
+          buttonColor={Colors.primary}
           mode='contained'
           icon={({ color, size }) => <BuildingStorefrontIcon color={'#ffffff'} size={22} />}
           contentStyle={{ height: 34, justifyContent: 'center' }}

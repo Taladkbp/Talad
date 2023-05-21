@@ -1,7 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { useEffect, useState } from 'react';
-import { Button, SafeAreaView, Text, TextInput, View, Platform } from 'react-native';
+import { SafeAreaView, View, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
@@ -9,6 +9,7 @@ import { AppleButton } from '@invertase/react-native-apple-authentication';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BackButton from '../../components/BackButton';
+import { Text, TextInput } from 'react-native-paper';
 
 GoogleSignin.configure({
   webClientId: '717021286462-jvsop9p5diouriouadledu59hint4uri.apps.googleusercontent.com',
@@ -54,7 +55,7 @@ const LoginScreen = () => {
           value={email}
           keyboardType="email-address"
           autoCapitalize="none"
-          className='border border-gray-300 p-2 rounded-md'
+          className='border border-gray-300 rounded-md'
         />
         <Text>Password:</Text>
         <TextInput
@@ -62,7 +63,7 @@ const LoginScreen = () => {
           value={password}
           secureTextEntry
           autoCapitalize="none"
-          className='border border-gray-300 p-2 rounded-md my-4'
+          className='border border-gray-300 rounded-md my-4'
         />
       </View>
       <TouchableOpacity

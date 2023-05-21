@@ -5,9 +5,6 @@ import HomeScreen from '../screens/HomeScreen'
 import LivestreamScreen from '../screens/LivestreamScreen'
 import ShopScreen from '../screens/ShopScreen'
 import AnalyticsScreen from '../screens/AnalyticsScreen'
-import LoginScreen from '../screens/login_screens/LoginScreen'
-import ProfileSetupScreen from '../screens/ProfileSetupScreen'
-import PhoneVerificationScreen from '../screens/login_screens/PhoneVerificationScreen'
 
 import { HomeIcon as HomeIconSolid,
     VideoCameraIcon as VideoCameraIconSolid,
@@ -25,7 +22,7 @@ import { activeTabColor, inactiveTabColor } from '../src/theme/colors.js'
 
 const Tab = createBottomTabNavigator()
 
-const UserTabNavigator = () => {
+const SellerTabNavigator = () => {
   return (
     <Tab.Navigator 
       initialRouteName='Home'
@@ -56,4 +53,4 @@ const UserTabNavigator = () => {
     </Tab.Navigator>
   )
 }
-export default UserTabNavigator
+export default SellerTabNavigator

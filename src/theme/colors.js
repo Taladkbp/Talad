@@ -9,6 +9,7 @@ export const Colors = {
   onAccent: '#000000', // Black text on accent color
   onBackground: '#424242', // Dark gray text on background color
   onSurface: '#424242', // Dark gray text on surface color
+  onUserIcon: '#D3D2E2',
 };
 
 export const activeTabColor = '#4CAF50';

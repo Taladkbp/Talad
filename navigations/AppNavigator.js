@@ -1,11 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import UserTabNavigator from './UserTabNavigator';
 import AuthNavigator from './AuthNavigator';
 import { useCallback, useMemo, useRef } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet from '@gorhom/bottom-sheet';
 import BottomSheetContext from '../components/BottomSheetContext';
-import AccountScreen from '../screens/AccountScreen';
+import SellerTabNavigator from './SellerTabNavigator';
+import AccountScreen from '../screens/account_screens/AccountScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -33,7 +34,7 @@ const AppNavigator = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen 
             name='UserApp' 
-            component={UserTabNavigator}
+            component={SellerTabNavigator}
             />
           <Stack.Screen name='Authentication' component={AuthNavigator}/>
         </Stack.Navigator>

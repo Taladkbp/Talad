@@ -3,6 +3,7 @@ import React from 'react'
 import PhoneVerificationScreen from '../screens/login_screens/PhoneVerificationScreen';
 import OTPVerificationScreen from '../screens/login_screens/OTPVerificationScreen';
 import LoginScreen from '../screens/login_screens/LoginScreen';
+import UserInfoScreen from '../screens/account_screens/UserInfoScreen.js'
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ const AuthNavigator = () => {
       <Stack.Screen
         name='OTPVerification'
         component={OTPVerificationScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name='UserInfo'
+        component={UserInfoScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
