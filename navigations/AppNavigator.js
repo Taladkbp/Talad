@@ -33,7 +33,7 @@ const AppNavigator = () => {
       <BottomSheetContext.Provider value={handleOpenSheet}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen 
-            name='UserApp' 
+            name='SellerApp' 
             component={SellerTabNavigator}
             />
           <Stack.Screen name='Authentication' component={AuthNavigator}/>

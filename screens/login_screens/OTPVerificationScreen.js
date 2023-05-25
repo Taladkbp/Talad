@@ -38,7 +38,7 @@ const OTPVerificationScreen = ({ route }) => {
         const credential = auth.PhoneAuthProvider.credential(verificationId, OTP);
         await auth().signInWithCredential(credential);
         console.log("OTP verification successful");
-        navigations.navigate('UserApp', { screen: 'Home' });
+        navigations.navigate('SellerApp', { screen: 'Home' });
         SuccessfulLoginAlert();
       } else {
         console.log('No confirmation object to confirm the code');
