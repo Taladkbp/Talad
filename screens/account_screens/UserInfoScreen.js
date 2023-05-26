@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Text, TextInput } from 'react-native-paper'
+import { ActivityIndicator, Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Colors } from '../../src/theme/colors'
 import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
@@ -131,8 +131,12 @@ const UserInfoScreen = () => {
               />
             )}
           </View>
-          <View className='flex-1'>
-            {address && (
+          <View className='mt-2 mb-2'>
+            <Text className='text-lg font-bold'>Delivery Address:</Text>
+          </View>
+          <View className='shadow-md rounded-lg bg-white overflow-hidden'>
+
+            {address ? (
               <MapView
                 style={{ width: '100%', height: 250 }}
                 region={address}
@@ -142,6 +146,11 @@ const UserInfoScreen = () => {
               > 
                 <Marker coordinate={address}/>
               </MapView>
+            ) : (
+              <View className='h-60 justify-center items-center'>
+                <ActivityIndicator size="large" color={Colors.primary}/>
+                <Text className='pt-2'>Loading map...</Text>
+              </View>
             )}
           </View>
         </ScrollView>
