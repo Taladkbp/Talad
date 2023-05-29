@@ -7,8 +7,8 @@ import { Button, Text } from 'react-native-paper';
 import PhoneInput from 'react-native-phone-number-input';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import BackButton from '../../components/BackButton';
 import auth from '@react-native-firebase/auth';
+import BackButton from '../../components/BackButton';
 
 const PhoneVerificationScreen = () => {
   // State variables for phone number
@@ -20,7 +20,7 @@ const PhoneVerificationScreen = () => {
   const [confirm, setConfirm] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const navigations = useNavigation();
+  const navigation = useNavigation();
 
   // Function to handle change in phone number input
   const handleTextChange = (text) => {
@@ -37,7 +37,7 @@ const PhoneVerificationScreen = () => {
       console.log('Confirmation:', confirmation);
       setConfirm(confirmation);
       setLoading(false)
-      navigations.navigate('Authentication', {
+      navigation.navigate('Authentication', {
         screen: 'OTPVerification',
         params: { verificationId: confirmation.verificationId },
       });

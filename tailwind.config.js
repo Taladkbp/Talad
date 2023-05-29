@@ -1,11 +1,11 @@
 // tailwind.config.js
 module.exports = {
     content: [
-      "./screens/**/*.{js,ts,jsx,tsx}",
-      "./pages/**/*.{js,ts,jsx,tsx}",
-      "./components/**/*.{js,ts,jsx,tsx}",
-      "./navigations/**/*.{js,ts,jsx,tsx}",
-      "./App.js",
+      "./src/screens/**/*.{js,ts,jsx,tsx}",
+      "./src/pages/**/*.{js,ts,jsx,tsx}",
+      "./src/components/**/*.{js,ts,jsx,tsx}",
+      "./src/navigations/**/*.{js,ts,jsx,tsx}",
+      "./src/App.js",
     ],
     // ...
   };

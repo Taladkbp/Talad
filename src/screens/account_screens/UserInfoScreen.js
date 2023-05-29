@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ActivityIndicator, Text, TextInput } from 'react-native-paper'
+import { ActivityIndicator, Button, Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Colors } from '../../src/theme/colors'
 import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
-import BackButton from '../../components/BackButton'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import PhoneInput from 'react-native-phone-number-input'
@@ -11,6 +9,8 @@ import { CheckBadgeIcon } from 'react-native-heroicons/solid'
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import Geolocation from '@react-native-community/geolocation';
 import MapView, { Marker } from 'react-native-maps';
+import BackButton from '../../components/BackButton'
+import { Colors } from '../../theme/colors';
 
 
 const UserInfoScreen = () => {
@@ -21,8 +21,9 @@ const UserInfoScreen = () => {
   const [address, setAddress] = useState(null);
 
   const [show, setShow] = useState(false);
-  const [valid, setValid] = useState(false)
+  const [phoneIsValid, setPhoneIsValid] = useState(false);
   const [dateSelected, setDateSelected] = useState(false);
+  const [formValid, setFormValid] = useState(false);
 
   const showDatePicker = () => {
     setShow(true);
@@ -42,7 +43,7 @@ const UserInfoScreen = () => {
   const checkPhoneNumberValid = (text) => {
     setPhoneNumber(text);
     const checkValid = isValidPhoneNumber(text)
-    setValid(checkValid === true);
+    setPhoneIsValid(checkValid === true);
   };
 
 
@@ -69,6 +70,17 @@ const UserInfoScreen = () => {
     );
   }, []);
 
+  useEffect(() => {
+    setFormValid(firstName !== '' && lastName !== '' && phoneIsValid && dateSelected && address !== null)
+  }, [firstName, lastName, phoneIsValid, dateSelected, address])
+
+  const onSubmit = () => {
+    if(formValid){
+      console.log('Form is valid')
+    } else {
+
+    }}
+
   return (
     <SafeAreaView className='flex-1'>
       <KeyboardAvoidingView 
@@ -80,7 +92,7 @@ const UserInfoScreen = () => {
           <View className='flex-row justify-center my-10'>
             <Text className='text-3xl font-bold'> Set up your profile</Text>
           </View>
-          <View className='flex-1 px-5 mt-5'>
+          <View className='flex-1 px-5 mt-2'>
             <TextInput
               value={firstName}
               onChangeText={setFirstName}
@@ -110,7 +122,7 @@ const UserInfoScreen = () => {
               <View className='mt-3 ml-1'>
                 <CheckBadgeIcon
                   width={35} height={35} 
-                  color={valid ? '#6A9C78' : 'gray'}
+                  color={phoneIsValid ? '#6A9C78' : 'gray'}
                 />
               </View>
             </View>
@@ -153,6 +165,13 @@ const UserInfoScreen = () => {
               </View>
             )}
           </View>
+          <Button 
+            mode='contained'
+            className='my-5 mx-20'
+            disabled={!formValid}
+            onPress={onSubmit}>
+              CONFIRM
+          </Button> 
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

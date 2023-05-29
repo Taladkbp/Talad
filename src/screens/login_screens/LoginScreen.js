@@ -8,8 +8,8 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { AppleButton } from '@invertase/react-native-apple-authentication';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import BackButton from '../../components/BackButton';
 import { Text, TextInput } from 'react-native-paper';
+import BackButton from '../../components/BackButton';
 
 GoogleSignin.configure({
   webClientId: '717021286462-jvsop9p5diouriouadledu59hint4uri.apps.googleusercontent.com',
@@ -25,26 +25,26 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (user) {
-      if (user.phoneNumber) {
-        alert(`You have successfully logged in with your phone number: ${user.phoneNumber}`);
-      } else {
-        alert('You have successfully logged in!');
-      }
-    }
-    if (initializing) setInitializing(false);
-  }
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (user) {
+  //     if (user.phoneNumber) {
+  //       alert(`You have successfully logged in with your phone number: ${user.phoneNumber}`);
+  //     } else {
+  //       alert('You have successfully logged in!');
+  //     }
+  //   }
+  //   if (initializing) setInitializing(false);
+  // }
 
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; 
-  }, []);
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; 
+  // }, []);
 
-  if (initializing) return null;
+  // if (initializing) return null;
 
-  if (!user || !user.phoneNumber) {
+  // if (!user || !user.phoneNumber) {
     return (
       <SafeAreaView className='flex-1 justify-center px-5'>
       <BackButton/>
@@ -109,7 +109,7 @@ const LoginScreen = () => {
 
     );
   }
-}
+
 
 const onSignInButtonPress = (email, password, setErrorMessage) => {
   if (email.trim() === '' || password.trim() === '') {
