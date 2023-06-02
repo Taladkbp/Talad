@@ -10,7 +10,7 @@ import BottomSheetContext from '../components/BottomSheetContext.js';
 const TopTabNavigator = () => {
   const openSheet = useContext(BottomSheetContext)
   return (
-    <SafeAreaView>
+    <View>
       <View className='flex-row p-2 justify-between'>
         <TouchableOpacity onPress={openSheet}>
           <UserCircleIcon color={Colors.onUserIcon} size={34}/>
@@ -26,7 +26,7 @@ const TopTabNavigator = () => {
           Create
         </Button>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
