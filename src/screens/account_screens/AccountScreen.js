@@ -4,7 +4,8 @@ import { Text } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ArrowRightOnRectangleIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
-import { Colors } from '../../src/theme/colors';
+import { Colors } from '../../theme/colors';
+
 
 
 const AccountScreen = ({ handleCloseSheet }) => {

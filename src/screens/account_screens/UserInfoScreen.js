@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Colors } from '../../src/theme/colors'
+
 import { View } from 'react-native'
 import BackButton from '../../components/BackButton'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Colors } from '../../theme/colors'
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')

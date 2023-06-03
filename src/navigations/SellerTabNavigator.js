@@ -18,7 +18,7 @@ import { HomeIcon as HomeIconOutline,
     ChartBarSquareIcon as ChartBarSquareIconOutline,
   } from 'react-native-heroicons/outline'
 
-import { activeTabColor, inactiveTabColor } from '../src/theme/colors.js'
+import { activeTabColor, inactiveTabColor } from '../theme/colors.js'
 
 const Tab = createBottomTabNavigator()
 

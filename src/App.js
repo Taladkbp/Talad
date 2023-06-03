@@ -4,7 +4,8 @@ import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import AppNavigator from './navigations/AppNavigator';
-import {Colors} from './src/theme/colors'
+import { Colors } from './theme/colors';
+
 
 const theme = {
   ...DefaultTheme,

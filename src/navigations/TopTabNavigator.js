@@ -1,8 +1,7 @@
-import React, { useCallback, useContext, useMemo, useRef } from 'react'
+import React, { useContext} from 'react'
 import { UserCircleIcon } from 'react-native-heroicons/solid';
 import { BuildingStorefrontIcon } from 'react-native-heroicons/solid';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../src/theme/colors.js'
+import { Colors } from '../theme/colors.js'
 import { TouchableOpacity, View } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import BottomSheetContext from '../components/BottomSheetContext.js';
