@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 import { Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -7,6 +7,12 @@ import BackButton from '../../components/BackButton'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Colors } from '../../theme/colors'
+import MapView from 'react-native-maps'
+
+
+const Map = forwardRef((props, ref) => {
+  
+})
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')
@@ -15,6 +21,7 @@ const UserInfoScreen = () => {
   const [birthday, setBirthday] = useState('');
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+  const [address, setAddress] = useState(null);
 
   const showDatePicker = () => {
     setShow(true);
@@ -29,6 +36,8 @@ const UserInfoScreen = () => {
   const formatDate = (date) => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
+
+
   return (
     <SafeAreaView className='flex-1'>
       <BackButton/>
@@ -76,6 +85,14 @@ const UserInfoScreen = () => {
             maximumDate={new Date()}
           />
         )}
+        <MapView
+          style={{ width: '100%', height: 250 }}
+          region={address}
+          onRegionChangeComplete={setAddress}
+          zoomEnabled={true}
+          zoomControlEnabled={true}
+        >
+        </MapView>
       </View>
     </SafeAreaView>
   )

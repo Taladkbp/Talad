@@ -30,6 +30,7 @@
     "react-native-fbsdk-next": "^11.2.1",
     "react-native-gesture-handler": "^2.10.0",
     "react-native-heroicons": "^3.2.0",
+    "react-native-maps": "^1.7.1",
     "react-native-modal": "^13.0.1",
     "react-native-pager-view": "6.1.2",
     "react-native-paper": "^5.7.2",
