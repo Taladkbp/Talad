@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>UIAppFonts</key>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We use your location data to make sure the product you purchase gets delivered to you at your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
   <string>We use your location data to make sure the product you purchase gets delivered to you at your location</string>
   <key>NSLocationAlwaysUsageDescription</key>

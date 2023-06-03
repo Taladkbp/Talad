@@ -1,7 +1,6 @@
-import React, { forwardRef, useRef, useState } from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import { Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
 import { View } from 'react-native'
 import BackButton from '../../components/BackButton'
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -9,10 +8,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Colors } from '../../theme/colors'
 import MapView from 'react-native-maps'
 
-
-const Map = forwardRef((props, ref) => {
-  
-})
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')
@@ -36,6 +31,20 @@ const UserInfoScreen = () => {
   const formatDate = (date) => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
+
+  // useEffect(() => {
+  //   (async () => {
+      
+  //     let { status } = await Location.requestForegroundPermissionsAsync();
+  //     if (status !== 'granted') {
+  //       setErrorMsg('Permission to access location was denied');
+  //       return;
+  //     }
+
+  //     let location = await Location.getCurrentPositionAsync({});
+  //     setAddress(address);
+  //   })();
+  // }, []);
 
 
   return (
