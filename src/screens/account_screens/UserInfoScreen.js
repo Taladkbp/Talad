@@ -7,8 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import PhoneInput from 'react-native-phone-number-input'
 import { CheckBadgeIcon } from 'react-native-heroicons/solid'
 import { isValidPhoneNumber } from 'libphonenumber-js';
-// import Geolocation from '@react-native-community/geolocation';
-// import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import BackButton from '../../components/BackButton'
 import { Colors } from '../../theme/colors';
 
@@ -148,7 +147,7 @@ const UserInfoScreen = () => {
           </View>
           <View className='shadow-md rounded-lg bg-white overflow-hidden'>
 
-            {/* {address ? (
+            {address ? (
               <MapView
                 style={{ width: '100%', height: 250 }}
                 region={address}
@@ -163,7 +162,7 @@ const UserInfoScreen = () => {
                 <ActivityIndicator size="large" color={Colors.primary}/>
                 <Text className='pt-2'>Loading map...</Text>
               </View>
-            )} */}
+            )}
           </View>
           <Button 
             mode='contained'
