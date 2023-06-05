@@ -6,6 +6,11 @@ import { View } from 'react-native'
 import BackButton from '../../components/BackButton'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useEffect } from 'react'
+import * as Location from 'expo-location';
+import { Camera, CameraType } from 'expo-camera';
+import Constants from 'expo-constants';
+
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')
@@ -14,6 +19,7 @@ const UserInfoScreen = () => {
   const [birthday, setBirthday] = useState('');
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
+  const [address, setAddress] = useState('');
 
   const showDatePicker = () => {
     setShow(true);
@@ -28,6 +34,30 @@ const UserInfoScreen = () => {
   const formatDate = (date) => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
+
+  useEffect(() => {
+    (async () => {
+      /* @hide */
+      if (Platform.OS === 'android' && !Device.isDevice) {
+        setErrorMsg(
+          'Oops, this will not work on Snack in an Android Emulator. Try it on your device!'
+        );
+        return;
+      }
+      /* @end */
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location)
+
+    })();
+  }, []);
+
+  
   return (
     <SafeAreaView className='flex-1'>
       <BackButton/>

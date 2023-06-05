@@ -22,6 +22,12 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow Talad to use your location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow Talad to use the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow Talad to use the microphone</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
