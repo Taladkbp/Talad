@@ -8,16 +8,13 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useEffect } from 'react'
 import * as Location from 'expo-location';
-import { Camera, CameraType } from 'expo-camera';
-import Constants from 'expo-constants';
 
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(null);
   const [show, setShow] = useState(false);
   const [address, setAddress] = useState('');
 
@@ -25,13 +22,16 @@ const UserInfoScreen = () => {
     setShow(true);
   };
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
+  const onChangeDate = (event, selectedDate) => {
     setShow(Platform.OS === 'ios');
-    setDate(currentDate);
+    if (selectedDate) setDate(selectedDate);
+    setShow(false)
   };
 
   const formatDate = (date) => {
+    if (!date) {
+      return 'None';
+    }
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
 
@@ -93,15 +93,15 @@ const UserInfoScreen = () => {
           className='h-10 border border-gray-300 mb-4 justify-center'
           style={{ backgroundColor: Colors.surface}}
           onPress={showDatePicker}> 
-          <Text className='pl-4 text-base'>Birthday: {formatDate(date)}</Text>
+          <Text className='pl-4 text-base'>Birthday: {date ? formatDate(date): 'Please enter your birthday'}</Text>
         </TouchableOpacity>
         {show && (
           <DateTimePicker
             testID='dateTimePicker'
-            value={date}
+            value={date || new Date()}
             mode='date'
             display='default'
-            onChange={onChange}
+            onChange={onChangeDate}
             maximumDate={new Date()}
           />
         )}
