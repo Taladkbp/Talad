@@ -9,7 +9,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useEffect } from 'react'
 import * as Location from 'expo-location';
 import MapView, { Marker } from 'react-native-maps'
-
+import * as Device from 'expo-device';
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')
@@ -38,14 +38,6 @@ const UserInfoScreen = () => {
 
   useEffect(() => {
     (async () => {
-      /* @hide */
-      if (Platform.OS === 'android' && !Device.isDevice) {
-        setErrorMsg(
-          'Oops, this will not work on Snack in an Android Emulator. Try it on your device!'
-        );
-        return;
-      }
-      /* @end */
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
