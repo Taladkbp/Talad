@@ -1,11 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import HomeScreen from '../screens/HomeScreen'
-import LivestreamScreen from '../screens/LivestreamScreen'
-import ShopScreen from '../screens/ShopScreen'
-import AnalyticsScreen from '../screens/AnalyticsScreen'
-
 import { HomeIcon as HomeIconSolid,
     VideoCameraIcon as VideoCameraIconSolid,
     BuildingStorefrontIcon as BuildingStorefrontIconSolid,
@@ -18,7 +13,12 @@ import { HomeIcon as HomeIconOutline,
     ChartBarSquareIcon as ChartBarSquareIconOutline,
   } from 'react-native-heroicons/outline'
 
-import { activeTabColor, inactiveTabColor } from '../src/theme/colors.js'
+
+import { activeTabColor, inactiveTabColor } from '../theme/colors'
+import HomeScreen from '../screens/HomeScreen'
+import LivestreamScreen from '../screens/LivestreamScreen'
+import ShopScreen from '../screens/ShopScreen'
+import AnalyticsScreen from '../screens/AnalyticsScreen'
 
 const Tab = createBottomTabNavigator()
 

@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import DateTimePicker from '@react-native-community/datetimepicker'
+import * as Location from 'expo-location'
+import React, { useEffect, useState } from 'react'
+import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import MapView, { Marker } from 'react-native-maps'
 import { ActivityIndicator, Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Colors } from '../../src/theme/colors'
-import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
 import BackButton from '../../components/BackButton'
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { useEffect } from 'react'
-import * as Location from 'expo-location';
-import MapView, { Marker } from 'react-native-maps'
-import * as Device from 'expo-device';
+import { Colors } from '../../theme/colors'
 
 const UserInfoScreen = () => {
   const [firstName, setFirstName] = useState('')

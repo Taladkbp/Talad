@@ -1,12 +1,12 @@
+import BottomSheet from '@gorhom/bottom-sheet';
 import { createStackNavigator } from '@react-navigation/stack';
-import AuthNavigator from './AuthNavigator';
 import { useCallback, useMemo, useRef } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import BottomSheet from '@gorhom/bottom-sheet';
-import BottomSheetContext from '../components/BottomSheetContext';
-import SellerTabNavigator from './SellerTabNavigator';
-import AccountScreen from '../screens/account_screens/AccountScreen';
 
+import AuthNavigator from './AuthNavigator';
+import SellerTabNavigator from './SellerTabNavigator';
+import BottomSheetContext from '../components/BottomSheetContext';
+import AccountScreen from '../screens/account_screens/AccountScreen';
 
 const Stack = createStackNavigator();
 

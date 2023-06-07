@@ -1,9 +1,9 @@
-import { createStackNavigator } from '@react-navigation/stack'
-import React from 'react'
-import PhoneVerificationScreen from '../screens/login_screens/PhoneVerificationScreen';
-import OTPVerificationScreen from '../screens/login_screens/OTPVerificationScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import UserInfoScreen from '../screens/account_screens/UserInfoScreen.js';
 import LoginScreen from '../screens/login_screens/LoginScreen';
-import UserInfoScreen from '../screens/account_screens/UserInfoScreen.js'
+import OTPVerificationScreen from '../screens/login_screens/OTPVerificationScreen';
+import PhoneVerificationScreen from '../screens/login_screens/PhoneVerificationScreen';
 
 const Stack = createStackNavigator();
 

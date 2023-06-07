@@ -1,11 +1,11 @@
 // Import necessary libraries
+import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import OTPInputView from '@twotalltotems/react-native-otp-input';
 import React, { useState } from 'react';
 import { Button, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import OTPInputView from '@twotalltotems/react-native-otp-input';
 import BackButton from '../../components/BackButton';
-import auth from '@react-native-firebase/auth';
-import { useNavigation } from '@react-navigation/native';
 import SuccessfulLoginAlert from '../../components/SuccessfulLoginAlert';
 
 const OTPVerificationScreen = ({ route }) => {

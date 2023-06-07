@@ -1,15 +1,14 @@
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Platform } from 'react-native';
+import { Platform, SafeAreaView, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { AppleButton, appleAuth } from '@invertase/react-native-apple-authentication';
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
-import { AppleButton } from '@invertase/react-native-apple-authentication';
-import { appleAuth } from '@invertase/react-native-apple-authentication';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import BackButton from '../../components/BackButton';
 import { Text, TextInput } from 'react-native-paper';
+import BackButton from '../../components/BackButton';
 
 GoogleSignin.configure({
   webClientId: '717021286462-jvsop9p5diouriouadledu59hint4uri.apps.googleusercontent.com',
@@ -46,65 +45,67 @@ const LoginScreen = () => {
 
   if (!user || !user.phoneNumber) {
     return (
-      <SafeAreaView className='flex-1 justify-center px-5'>
-      <BackButton/>
-      <View>
-        <Text>Email:</Text>
-        <TextInput
-          onChangeText={setEmail}
-          value={email}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          className='border border-gray-300 rounded-md'
-        />
-        <Text>Password:</Text>
-        <TextInput
-          onChangeText={setPassword}
-          value={password}
-          secureTextEntry
-          autoCapitalize="none"
-          className='border border-gray-300 rounded-md my-4'
-        />
-      </View>
-      <TouchableOpacity
-        onPress={() => onSignInButtonPress(email, password, setErrorMessage)}
-        className='flex-row items-center justify-center bg-blue-500 py-3 rounded-md mb-4'
-      >
-        <Text className='text-white text-lg'>Sign In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={onFacebookButtonPress}
-        className='flex-row items-center justify-center bg-blue-600 py-3 rounded-md mb-2'
-      >
-        <Icon name='facebook-square' size={20} color='white'/>
-        <Text className='text-white text-lg ml-2'>Facebook Log-In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={onGoogleButtonPress}
-        className='flex-row items-center justify-center bg-red-500 py-3 rounded-md mb-2'
-      >
-        <Icon name="google" size={20} color="white" />
-        <Text className='text-white text-lg ml-2'>Google Log-In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        className='flex-row items-center justify-center bg-violet-600 py-3 rounded-md mb-4'
-      >
-        <Icon name="envelope" size={20} color="white" />
-        <Text className='text-white text-lg ml-2'>Email Sign Up</Text>
-      </TouchableOpacity>
+      <SafeAreaView className='flex-1 justify-center'>
+        <BackButton/>
+        <View className='px-5'>
+          <Text>Email:</Text>
+          <TextInput
+            onChangeText={setEmail}
+            value={email}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            className='border border-gray-300 rounded-md'
+          />
+          <Text>Password:</Text>
+          <TextInput
+            onChangeText={setPassword}
+            value={password}
+            secureTextEntry
+            autoCapitalize="none"
+            className='border border-gray-300 rounded-md my-4'
+          />
 
-      {Platform.OS === 'ios' && (
-        <AppleButton
-          buttonStyle={AppleButton.Style.WHITE}
-          buttonType={AppleButton.Type.SIGN_IN}
-          style={{
-            width: 160, // You must specify a width
-            height: 45, // You must specify a height
-          }}
-          onPress={() => onAppleButtonPress().then(() => console.log('Apple sign-in complete!'))}
-        />
-      )}
-      {errorMessage ? <Text style={{ color: 'red' }}>{errorMessage}</Text> : null}
+          <TouchableOpacity
+            onPress={() => onSignInButtonPress(email, password, setErrorMessage)}
+            className='flex-row items-center justify-center bg-blue-500 py-3 rounded-md mb-4'
+          >
+            <Text className='text-white text-lg'>Sign In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={onFacebookButtonPress}
+            className='flex-row items-center justify-center bg-blue-600 py-3 rounded-md mb-2'
+          >
+            <Icon name='facebook-square' size={20} color='white'/>
+            <Text className='text-white text-lg ml-2'>Facebook Log-In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={onGoogleButtonPress}
+            className='flex-row items-center justify-center bg-red-500 py-3 rounded-md mb-2'
+          >
+            <Icon name="google" size={20} color="white" />
+            <Text className='text-white text-lg ml-2'>Google Log-In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className='flex-row items-center justify-center bg-violet-600 py-3 rounded-md mb-4'
+          >
+            <Icon name="envelope" size={20} color="white" />
+            <Text className='text-white text-lg ml-2'>Email Sign Up</Text>
+          </TouchableOpacity>
+          
+
+          {Platform.OS === 'ios' && (
+            <AppleButton
+              buttonStyle={AppleButton.Style.WHITE}
+              buttonType={AppleButton.Type.SIGN_IN}
+              style={{
+                width: 160, // You must specify a width
+                height: 45, // You must specify a height
+              }}
+              onPress={() => onAppleButtonPress().then(() => console.log('Apple sign-in complete!'))}
+            />
+          )}
+          {errorMessage ? <Text style={{ color: 'red' }}>{errorMessage}</Text> : null}
+        </View>
     </SafeAreaView>
 
     );
