@@ -5,8 +5,11 @@ import OTPInputView from '@twotalltotems/react-native-otp-input';
 import React, { useState } from 'react';
 import { Button, Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import BackButton from '../../components/BackButton';
+import OTPInputView from '@twotalltotems/react-native-otp-input';
+import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
 import SuccessfulLoginAlert from '../../components/SuccessfulLoginAlert';
+import BackButton from '../../components/BackButton';
 
 const OTPVerificationScreen = ({ route }) => {
   // State variables
@@ -38,8 +41,9 @@ const OTPVerificationScreen = ({ route }) => {
         const credential = auth.PhoneAuthProvider.credential(verificationId, OTP);
         await auth().signInWithCredential(credential);
         console.log("OTP verification successful");
-        navigations.navigate('UserApp', { screen: 'Home' });
+        navigations.navigate('SellerApp', { screen: 'Home' });
         SuccessfulLoginAlert();
+        Success
       } else {
         console.log('No confirmation object to confirm the code');
       }

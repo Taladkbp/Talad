@@ -24,26 +24,26 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (user) {
-      if (user.phoneNumber) {
-        alert(`You have successfully logged in with your phone number: ${user.phoneNumber}`);
-      } else {
-        alert('You have successfully logged in!');
-      }
-    }
-    if (initializing) setInitializing(false);
-  }
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (user) {
+  //     if (user.phoneNumber) {
+  //       alert(`You have successfully logged in with your phone number: ${user.phoneNumber}`);
+  //     } else {
+  //       alert('You have successfully logged in!');
+  //     }
+  //   }
+  //   if (initializing) setInitializing(false);
+  // }
 
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; 
-  }, []);
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; 
+  // }, []);
 
-  if (initializing) return null;
+  // if (initializing) return null;
 
-  if (!user || !user.phoneNumber) {
+  // if (!user || !user.phoneNumber) {
     return (
       <SafeAreaView className='flex-1 justify-center'>
         <BackButton/>
@@ -110,7 +110,7 @@ const LoginScreen = () => {
 
     );
   }
-}
+
 
 const onSignInButtonPress = (email, password, setErrorMessage) => {
   if (email.trim() === '' || password.trim() === '') {

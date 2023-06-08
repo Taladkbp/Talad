@@ -1,14 +1,13 @@
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text } from 'react-native-paper'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { ArrowRightOnRectangleIcon } from 'react-native-heroicons/solid';
+import { Text } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ArrowRightOnRectangleIcon, UserIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
 import { Colors } from '../../theme/colors';
 
-
 const AccountScreen = ({ handleCloseSheet }) => {
-  const size = 25
+  const size = 25;
   const navigation = useNavigation();
 
   const navigateToLogin = () => {
@@ -51,7 +50,7 @@ const AccountScreen = ({ handleCloseSheet }) => {
             style={{ backgroundColor: Colors.surface}}
             onPress={navigateToUserInfo}
           >
-            <ArrowRightOnRectangleIcon size={size} color={Colors.onBackground}
+            <UserIcon size={size} color={Colors.onBackground}
             />
             <Text className='text-xl font-bold pl-3'>Profile</Text>
           </TouchableOpacity>

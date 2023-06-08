@@ -1,71 +1,97 @@
-import DateTimePicker from '@react-native-community/datetimepicker'
-import * as Location from 'expo-location'
-import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import MapView, { Marker } from 'react-native-maps'
-import { ActivityIndicator, Text, TextInput } from 'react-native-paper'
+import React, { useEffect, useRef, useState } from 'react'
+import { ActivityIndicator, Button, Text, TextInput } from 'react-native-paper'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { KeyboardAvoidingView, ScrollView, View } from 'react-native'
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import PhoneInput from 'react-native-phone-number-input'
+import { CheckBadgeIcon } from 'react-native-heroicons/solid'
+import { isValidPhoneNumber } from 'libphonenumber-js';
+import MapView, { Marker } from 'react-native-maps';
 import BackButton from '../../components/BackButton'
-import { Colors } from '../../theme/colors'
+import { Colors } from '../../theme/colors';
+
 
 const UserInfoScreen = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [date, setDate] = useState(null);
+  const [birthday, setBirthday] = useState(new Date());
+  const [address, setAddress] = useState(null);
+
   const [show, setShow] = useState(false);
-  const [location, setLocation] = useState('');
+  const [phoneIsValid, setPhoneIsValid] = useState(false);
+  const [dateSelected, setDateSelected] = useState(false);
+  const [formValid, setFormValid] = useState(false);
 
   const showDatePicker = () => {
     setShow(true);
   };
 
-  const onChangeDate = (event, selectedDate) => {
+  const onChangeBirthday = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    if (selectedDate) setDate(selectedDate);
-    setShow(false)
+    setBirthday(currentDate);
+    setDateSelected(true);
   };
 
   const formatDate = (date) => {
-    if (!date) {
-      return 'None';
-    }
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-  }
+  };
+  
+  const checkPhoneNumberValid = (text) => {
+    setPhoneNumber(text);
+    const checkValid = isValidPhoneNumber(text)
+    setPhoneIsValid(checkValid === true);
+  };
+
+
+  // useEffect(() => {
+  //   Geolocation.getCurrentPosition((info) => {
+  //       const { latitude, longitude} = info.coords;
+  //       setAddress({
+  //         latitude,
+  //         longitude,
+  //         latitudeDelta: 0.0922,
+  //         longitudeDelta: 0.0421,
+  //       });
+  //   },
+  //   (error) => {
+  //     console.log(error);
+  //     setAddress({
+  //       latitude: 17.9757, // coordinates for Vientiane, Laos
+  //       longitude: 102.6331,
+  //       latitudeDelta: 0.0922,
+  //       longitudeDelta: 0.0421,
+  //     });
+  //   },
+  //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+  //   );
+  // }, []);
 
   useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
+    setFormValid(firstName !== '' && lastName !== '' && phoneIsValid && dateSelected && address !== null)
+  }, [firstName, lastName, phoneIsValid, dateSelected, address])
 
-      let locationResult = await Location.getCurrentPositionAsync({});
-      setLocation({
-        latitude: locationResult.coords.latitude,
-        longitude: locationResult.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      });
+  const onSubmit = () => {
+    if(formValid){
+      console.log('Form is valid')
+    } else {
 
-    })();
-  }, []);
+    }}
 
-  
   return (
     <SafeAreaView className='flex-1'>
-      <KeyboardAvoidingView
+      <KeyboardAvoidingView 
         behavior={Platform.OS === "ios" ? "padding" : "height"} 
-        className='flex-1'
-      >
+        className='flex-1'>
         <ScrollView>
+
           <BackButton/>
           <View className='flex-row justify-center my-10'>
             <Text className='text-3xl font-bold'> Set up your profile</Text>
           </View>
-          <View className='flex-1 px-5 mt-5'>
+          <View className='flex-1 px-5 mt-2'>
             <TextInput
               value={firstName}
               onChangeText={setFirstName}
@@ -82,54 +108,69 @@ const UserInfoScreen = () => {
               placeholder='Last Name'
               placeholderTextColor={Colors.onPlaceholder}
             />
-            <TextInput
-              value={phoneNumber}
-              onChangeText={setPhoneNumber}
-              className='h-10 border border-gray-300 mb-4'
-              style={{ backgroundColor: Colors.surface}}
-              placeholder='Phone Number'
-              placeholderTextColor={Colors.onPlaceholder}
-            />
+            <View className='flex-row justify-center mb-4'>
+              <PhoneInput
+                defaultCode='LA'
+                defaultValue={phoneNumber}
+                onChangeFormattedText={(text) => {
+                  checkPhoneNumberValid(text)
+                }}
+                withDarkTheme
+                withShadow
+              />
+              <View className='mt-3 ml-1'>
+                <CheckBadgeIcon
+                  width={35} height={35} 
+                  color={phoneIsValid ? '#6A9C78' : 'gray'}
+                />
+              </View>
+            </View>
             <TouchableOpacity 
               className='h-10 border border-gray-300 mb-4 justify-center'
               style={{ backgroundColor: Colors.surface}}
               onPress={showDatePicker}> 
-              <Text className='pl-4 text-base'>Birthday: {date ? formatDate(date): 'Please enter your birthday'}</Text>
+              <Text className='pl-4 text-base'>Birthday: {dateSelected ? formatDate(birthday): 'Select a date'}</Text>
             </TouchableOpacity>
             {show && (
               <DateTimePicker
                 testID='dateTimePicker'
-                value={date || new Date()}
+                value={birthday}
                 mode='date'
                 display='default'
-                onChange={onChangeDate}
+                onChange={onChangeBirthday}
                 maximumDate={new Date()}
               />
             )}
           </View>
-          <View className='flex-1'>
-            <View className='mt-2 mb-2'>
-              <Text className='text-lg font-bold'>Delivery Address:</Text>
-            </View>
-            <View className='shadow-md rounded-lg bg-white overflow-hidden'>
-                {location ? (
-                  <MapView
-                    style={{ width: '100%', height: 250 }}
-                    region={location}
-                    onRegionChangeComplete={setLocation}
-                    zoomEnabled={true}
-                    zoomControlEnabled={true}
-                  > 
-                    <Marker coordinate={location}/>
-                  </MapView>
-                ) : (
-                  <View className='h-60 justify-center items-center'>
-                    <ActivityIndicator size="large" color={Colors.primary}/>
-                    <Text className='pt-3'>Loading map...</Text>
-                  </View>
-                )}
-            </View>
+          <View className='mt-2 mb-2'>
+            <Text className='text-lg font-bold'>Delivery Address:</Text>
           </View>
+          <View className='shadow-md rounded-lg bg-white overflow-hidden'>
+
+            {address ? (
+              <MapView
+                style={{ width: '100%', height: 250 }}
+                region={address}
+                onRegionChangeComplete={setAddress}
+                zoomEnabled={true}
+                zoomControlEnabled={true}
+              > 
+                <Marker coordinate={address}/>
+              </MapView>
+            ) : (
+              <View className='h-60 justify-center items-center'>
+                <ActivityIndicator size="large" color={Colors.primary}/>
+                <Text className='pt-2'>Loading map...</Text>
+              </View>
+            )}
+          </View>
+          <Button 
+            mode='contained'
+            className='my-5 mx-20'
+            disabled={!formValid}
+            onPress={onSubmit}>
+              CONFIRM
+          </Button> 
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import AppNavigator from './navigations/AppNavigator';
 import {Colors} from './theme/colors'
-import AuthProvider from './auth/AuthProvider';
+import { firebase } from '@react-native-firebase/auth';
+import AuthProvider  from './auth/AuthProvider';
 
 const theme = {
   ...DefaultTheme,
@@ -15,7 +16,6 @@ const theme = {
 };
 
 export default function App() {
-
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
