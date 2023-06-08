@@ -13,7 +13,6 @@ import { HomeIcon as HomeIconOutline,
     ChartBarSquareIcon as ChartBarSquareIconOutline,
   } from 'react-native-heroicons/outline'
 
-
 import { activeTabColor, inactiveTabColor } from '../theme/colors'
 import HomeScreen from '../screens/HomeScreen'
 import LivestreamScreen from '../screens/LivestreamScreen'
