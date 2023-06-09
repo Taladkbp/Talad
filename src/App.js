@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import AppNavigator from './navigations/AppNavigator';
 import {Colors} from './theme/colors'
-import { firebase } from '@react-native-firebase/auth';
 import AuthProvider  from './auth/AuthProvider';
 
 const theme = {

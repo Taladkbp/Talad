@@ -8,8 +8,6 @@ import { CheckBadgeIcon } from 'react-native-heroicons/solid';
 import { Button, Text } from 'react-native-paper';
 import PhoneInput from 'react-native-phone-number-input';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
 import BackButton from '../../components/BackButton';
 
 const PhoneVerificationScreen = () => {

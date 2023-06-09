@@ -1,8 +1,4 @@
-import React, { useCallback, useContext, useMemo, useRef } from 'react'
-import { UserCircleIcon } from 'react-native-heroicons/solid';
-import { BuildingStorefrontIcon } from 'react-native-heroicons/solid';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Colors } from '../theme/colors.js'
+import React, { useContext } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { BuildingStorefrontIcon, UserCircleIcon } from 'react-native-heroicons/solid';
 import { Button } from 'react-native-paper';
