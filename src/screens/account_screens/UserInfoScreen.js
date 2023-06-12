@@ -10,6 +10,7 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 import MapView, { Marker } from 'react-native-maps';
 import BackButton from '../../components/BackButton'
 import { Colors } from '../../theme/colors';
+import * as Location from 'expo-location';
 
 
 const UserInfoScreen = () => {
@@ -45,29 +46,24 @@ const UserInfoScreen = () => {
     setPhoneIsValid(checkValid === true);
   };
 
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
 
-  // useEffect(() => {
-  //   Geolocation.getCurrentPosition((info) => {
-  //       const { latitude, longitude} = info.coords;
-  //       setAddress({
-  //         latitude,
-  //         longitude,
-  //         latitudeDelta: 0.0922,
-  //         longitudeDelta: 0.0421,
-  //       });
-  //   },
-  //   (error) => {
-  //     console.log(error);
-  //     setAddress({
-  //       latitude: 17.9757, // coordinates for Vientiane, Laos
-  //       longitude: 102.6331,
-  //       latitudeDelta: 0.0922,
-  //       longitudeDelta: 0.0421,
-  //     });
-  //   },
-  //   {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-  //   );
-  // }, []);
+      let location = await Location.getCurrentPositionAsync({});
+      setAddress({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      });
+    })();
+  }, []);
 
   useEffect(() => {
     setFormValid(firstName !== '' && lastName !== '' && phoneIsValid && dateSelected && address !== null)
@@ -151,7 +147,7 @@ const UserInfoScreen = () => {
               <MapView
                 style={{ width: '100%', height: 250 }}
                 region={address}
-                onRegionChangeComplete={setAddress}
+                onRegionChangeComplete={(region) => setAddress(region)}
                 zoomEnabled={true}
                 zoomControlEnabled={true}
               > 

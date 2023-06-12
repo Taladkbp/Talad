@@ -25,19 +25,17 @@ PODS:
     - ExpoModulesCore
     - FBSDKCoreKit
     - React-Core
-  - ExpoAdapterGoogleSignIn (9.0.2):
+  - ExpoAdapterGoogleSignIn (9.1.0):
     - ExpoModulesCore
     - GoogleSignIn (~> 6.2)
     - React-Core
-  - ExpoDevice (5.2.1):
-    - ExpoModulesCore
   - ExpoKeepAwake (12.0.1):
     - ExpoModulesCore
   - ExpoModulesCore (1.2.7):
     - React-Core
     - React-RCTAppDelegate
     - ReactCommon/turbomodule/core
-  - EXSplashScreen (0.18.1):
+  - EXSplashScreen (0.18.2):
     - ExpoModulesCore
     - React-Core
   - FBAEMKit (15.0.0):
@@ -398,8 +396,6 @@ PODS:
     - FBSDKGamingServicesKit (~> 15.0.0)
     - FBSDKShareKit (~> 15.0.0)
     - React-Core
-  - react-native-geolocation (3.0.6):
-    - React-Core
   - react-native-google-maps (1.7.1):
     - Google-Maps-iOS-Utils (= 4.1.0)
     - GoogleMaps (= 7.4.0)
@@ -408,7 +404,7 @@ PODS:
     - React-Core
   - react-native-pager-view (6.1.2):
     - React-Core
-  - react-native-safe-area-context (4.5.0):
+  - react-native-safe-area-context (4.5.3):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -504,19 +500,19 @@ PODS:
     - React-Core
   - RNDateTimePicker (7.1.0):
     - React-Core
-  - RNFBApp (17.4.3):
+  - RNFBApp (17.5.0):
     - Firebase/CoreOnly (= 10.7.0)
     - React-Core
-  - RNFBAuth (17.4.3):
+  - RNFBAuth (17.5.0):
     - Firebase/Auth (= 10.7.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (2.10.0):
+  - RNGestureHandler (2.11.0):
     - React-Core
-  - RNGoogleSignin (9.0.2):
+  - RNGoogleSignin (9.1.0):
     - GoogleSignIn (~> 6.2)
     - React-Core
-  - RNReanimated (3.1.0):
+  - RNReanimated (2.14.4):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -562,7 +558,6 @@ DEPENDENCIES:
   - Expo (from `../node_modules/expo`)
   - ExpoAdapterFBSDKNext (from `../node_modules/react-native-fbsdk-next/ios`)
   - "ExpoAdapterGoogleSignIn (from `../node_modules/@react-native-google-signin/google-signin/expo/ios`)"
-  - ExpoDevice (from `../node_modules/expo-device/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
@@ -588,7 +583,6 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
-  - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
@@ -663,8 +657,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fbsdk-next/ios"
   ExpoAdapterGoogleSignIn:
     :path: "../node_modules/@react-native-google-signin/google-signin/expo/ios"
-  ExpoDevice:
-    :path: "../node_modules/expo-device/ios"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
@@ -712,8 +704,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-fbsdk-next:
     :path: "../node_modules/react-native-fbsdk-next"
-  react-native-geolocation:
-    :path: "../node_modules/@react-native-community/geolocation"
   react-native-google-maps:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
@@ -788,11 +778,10 @@ SPEC CHECKSUMS:
   EXLocation: 74a0ba446f54fd585ea6cfcd19a25644bf22c30d
   Expo: 8448e3a2aa1b295f029c81551e1ab6d986517fdb
   ExpoAdapterFBSDKNext: fe88e4f8f0afbb717402bce98042156e160e6de5
-  ExpoAdapterGoogleSignIn: 98a113d9c0ed1ce7cf6259f0907d3f93209b0d7f
-  ExpoDevice: e0bebf68f978b3d353377ce42e73c20c0a070215
+  ExpoAdapterGoogleSignIn: cacbfcc759de2918c6f530fc079f61b1119ea0b5
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
   ExpoModulesCore: 653958063a301098b541ae4dfed1ac0b98db607b
-  EXSplashScreen: cd7fb052dff5ba8311d5c2455ecbebffe1b7a8ca
+  EXSplashScreen: 0e0a9ba0cf7553094e93213099bd7b42e6e237e9
   FBAEMKit: d8312d8451ead46282adc7f3565ffc4965e3a4a7
   FBLazyVector: a83ceaa8a8581003a623facdb3c44f6d4f342ac5
   FBReactNativeSpec: 85eee79837cb797ab6176f0243a2b40511c09158
@@ -831,11 +820,10 @@ SPEC CHECKSUMS:
   React-jsinspector: d5ce2ef3eb8fd30c28389d0bc577918c70821bd6
   React-logger: 9332c3e7b4ef007a0211c0a9868253aac3e1da82
   react-native-fbsdk-next: 5291a5d67aab4e649d072c50988033ff0d05b915
-  react-native-geolocation: 0f7fe8a4c2de477e278b0365cce27d089a8c5903
   react-native-google-maps: dd12cdd86b8e3fedbbb671676aedaa2f656e2ccd
   react-native-maps: 667f9b975549c6fa9b1631bf859440f68ebd3b8f
   react-native-pager-view: 54bed894cecebe28cede54c01038d9d1e122de43
-  react-native-safe-area-context: 39c2d8be3328df5d437ac1700f4f3a4f75716acc
+  react-native-safe-area-context: b8979f5eda6ed5903d4dbc885be3846ea3daa753
   React-perflogger: 43392072a5b867a504e2b4857606f8fc5a403d7f
   React-RCTActionSheet: c7b67c125bebeda9fb19fc7b200d85cb9d6899c4
   React-RCTAnimation: c2de79906f607986633a7114bee44854e4c7e2f5
@@ -852,11 +840,11 @@ SPEC CHECKSUMS:
   RNAppleAuthentication: 0571c08da8c327ae2afc0261b48b4a515b0286a6
   RNCClipboard: 41d8d918092ae8e676f18adada19104fa3e68495
   RNDateTimePicker: 7ecd54a97fc3749f38c3c89a171f6cbd52f3c142
-  RNFBApp: 922564a99c97a8cab366d5a918f9fecff6b563d5
-  RNFBAuth: 55fd07310abde3fa2f3a6568f6d3ef590383d241
-  RNGestureHandler: e145476da655f3dbc48ef2f0a08cf7a34338c02b
-  RNGoogleSignin: 22e468a9474dbcb8618d8847205ad4f0b2575d13
-  RNReanimated: b1220a0e5168745283ff5d53bfc7d2144b2cee1b
+  RNFBApp: d59efa0872fff4e27de03cca3c528c203a436ae5
+  RNFBAuth: 54e598bb1358a0cf6c0a187f43161cd1bde90455
+  RNGestureHandler: 026038a97d4c8649ce397a22e162ca58b4e6c230
+  RNGoogleSignin: c15bdaa7e8a9e190b6169d9c96a4e8380a740f22
+  RNReanimated: cc5e3aa479cb9170bcccf8204291a6950a3be128
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   Yoga: ba09b6b11e6139e3df8229238aa794205ca6a02a
