@@ -1,6 +1,7 @@
 #import <Firebase.h>
 #import "AppDelegate.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <FBSDKCoreKit/FBSDKCoreKit-swift.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTLinkingManager.h>
@@ -12,6 +13,8 @@
 {
   [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyB7xMVmvyqoKrAb_MV3o--57Bm7nEpmVDc"];
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                        didFinishLaunchingWithOptions:launchOptions];
   self.moduleName = @"main";
 
   // You can add your custom initial props in the dictionary below.
@@ -40,15 +43,21 @@
   return true;
 }
 
-// Linking API
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-  return [super application:application openURL:url options:options] || [RCTLinkingManager application:application openURL:url options:options];
-}
-
 // Universal Links
 - (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler {
   BOOL result = [RCTLinkingManager application:application continueUserActivity:userActivity restorationHandler:restorationHandler];
   return [super application:application continueUserActivity:userActivity restorationHandler:restorationHandler] || result;
+}
+
+// Linking API
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  BOOL handled = [super application:application openURL:url options:options] || [RCTLinkingManager application:application openURL:url options:options];
+  
+  if ([url.scheme hasPrefix:@"fb"]) {
+    handled = [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options] || handled;
+  }
+
+  return handled;
 }
 
 // Explicitly define remote notification delegates to ensure compatibility with some third-party libraries
