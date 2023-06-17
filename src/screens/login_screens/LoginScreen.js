@@ -9,6 +9,7 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text, TextInput } from 'react-native-paper';
 import BackButton from '../../components/BackButton';
+import FacebookLoginButton from '../../components/FacebookLoginButton';
 
 GoogleSignin.configure({
   webClientId: '717021286462-jvsop9p5diouriouadledu59hint4uri.apps.googleusercontent.com',
@@ -24,26 +25,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // function onAuthStateChanged(user) {
-  //   setUser(user);
-  //   if (user) {
-  //     if (user.phoneNumber) {
-  //       alert(`You have successfully logged in with your phone number: ${user.phoneNumber}`);
-  //     } else {
-  //       alert('You have successfully logged in!');
-  //     }
-  //   }
-  //   if (initializing) setInitializing(false);
-  // }
-
-  // useEffect(() => {
-  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-  //   return subscriber; 
-  // }, []);
-
-  // if (initializing) return null;
-
-  // if (!user || !user.phoneNumber) {
     return (
       <SafeAreaView className='flex-1 justify-center'>
         <BackButton/>
@@ -71,13 +52,8 @@ const LoginScreen = () => {
           >
             <Text className='text-white text-lg'>Sign In</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={onFacebookButtonPress}
-            className='flex-row items-center justify-center bg-blue-600 py-3 rounded-md mb-2'
-          >
-            <Icon name='facebook-square' size={20} color='white'/>
-            <Text className='text-white text-lg ml-2'>Facebook Log-In</Text>
-          </TouchableOpacity>
+          <FacebookLoginButton/>
+
           <TouchableOpacity
             onPress={onGoogleButtonPress}
             className='flex-row items-center justify-center bg-red-500 py-3 rounded-md mb-2'
@@ -91,14 +67,13 @@ const LoginScreen = () => {
             <Icon name="envelope" size={20} color="white" />
             <Text className='text-white text-lg ml-2'>Email Sign Up</Text>
           </TouchableOpacity>
-          
 
           {Platform.OS === 'ios' && (
             <AppleButton
               buttonStyle={AppleButton.Style.WHITE}
               buttonType={AppleButton.Type.SIGN_IN}
               style={{
-                width: 160, // You must specify a width
+                width: 350, // You must specify a width
                 height: 45, // You must specify a height
               }}
               onPress={() => onAppleButtonPress().then(() => console.log('Apple sign-in complete!'))}
