@@ -79,12 +79,13 @@ const UserInfoScreen = () => {
   return (
     <SafeAreaView className='flex-1'>
       <KeyboardAvoidingView 
+        className='flex-1'
         behavior={Platform.OS === "ios" ? "padding" : "height"} 
-        className='flex-1'>
+        >
         <ScrollView>
 
           <BackButton/>
-          <View className='flex-row justify-center my-10'>
+          <View className='flex-row justify-center my-20'>
             <Text className='text-3xl font-bold'> Set up your profile</Text>
           </View>
           <View className='flex-1 px-5 mt-2'>
