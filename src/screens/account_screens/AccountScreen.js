@@ -5,10 +5,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ArrowRightOnRectangleIcon, UserIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
 import { Colors } from '../../theme/colors';
+import { useContext } from 'react';
+import {AuthContext} from '../../auth/AuthProvider.js'
 
 const AccountScreen = ({ handleCloseSheet }) => {
   const size = 25;
   const navigation = useNavigation();
+  const { user } = useContext(AuthContext);
 
   const navigateToLogin = () => {
     navigation.navigate('Authentication', {
@@ -36,6 +39,15 @@ const AccountScreen = ({ handleCloseSheet }) => {
           </TouchableOpacity>
         </View>
         <View className='flex-1 px-5 mt-5'>
+        <TouchableOpacity
+            className='flex-row items-center h-20 rounded-md mb-3 pl-4'
+            style={{ backgroundColor: Colors.surface}}
+            onPress={navigateToLogin}
+          >
+            <ArrowRightOnRectangleIcon size={size} color={Colors.onBackground}
+            />
+            <Text className='text-xl font-bold pl-3'>{user ? (user.isAnonymous ? 'No User Logged In' : user.uid) : 'No User'}</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             className='flex-row items-center h-14 rounded-md mb-3 pl-4'
             style={{ backgroundColor: Colors.surface}}

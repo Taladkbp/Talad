@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text } from 'react-native'
 import TopTabNavigator from '../navigations/TopTabNavigator'
 import { SafeAreaView } from 'react-native-safe-area-context'

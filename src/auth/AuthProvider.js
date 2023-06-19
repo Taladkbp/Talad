@@ -2,7 +2,7 @@ import React, { createContext, useEffect } from 'react'
 import useAuthState from './useAuthState';
 import { firebase } from '@react-native-firebase/auth';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const {user, isLoading} = useAuthState();
@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     signInAnonymously();
-    console.log(firebase.auth().currentUser)
+    console.log('AuthProvider.js user sign in: ', firebase.auth().currentUser)
   }, [])
 
   return (

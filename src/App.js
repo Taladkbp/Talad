@@ -16,13 +16,13 @@ const theme = {
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <AuthProvider>
-          <AppNavigator/>
-        </AuthProvider>
-      </NavigationContainer>
-    </PaperProvider>
+    <AuthProvider>
+      <PaperProvider theme={theme}>
+        <NavigationContainer>
+            <AppNavigator/>
+        </NavigationContainer>
+      </PaperProvider>
+    </AuthProvider>
   );
 };
 

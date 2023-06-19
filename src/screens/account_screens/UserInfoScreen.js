@@ -83,7 +83,6 @@ const UserInfoScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"} 
         >
         <ScrollView>
-
           <BackButton/>
           <View className='flex-row justify-center my-20'>
             <Text className='text-3xl font-bold'> Set up your profile</Text>
