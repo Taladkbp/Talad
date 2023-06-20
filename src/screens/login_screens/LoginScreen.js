@@ -59,13 +59,13 @@ const LoginScreen = () => {
               </TouchableOpacity>
               <FacebookLoginButton/>
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={onGoogleButtonPress}
                 className='flex-row items-center justify-center bg-red-500 py-3 rounded-md mb-2'
               >
                 <Icon name="google" size={20} color="white" />
                 <Text className='text-white text-lg ml-2'>Google Log-In</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity
                 className='flex-row items-center justify-center bg-violet-600 py-3 rounded-md mb-4'
               >

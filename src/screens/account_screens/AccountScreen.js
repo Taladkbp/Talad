@@ -2,16 +2,18 @@ import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ArrowRightOnRectangleIcon, UserIcon } from 'react-native-heroicons/solid';
+import { ArrowRightOnRectangleIcon, UserIcon, Cog6ToothIcon } from 'react-native-heroicons/solid';
 import { useNavigation } from '@react-navigation/native';
 import { Colors } from '../../theme/colors';
 import { useContext } from 'react';
 import {AuthContext} from '../../auth/AuthProvider.js'
+import BottomSheetContext from '../../components/BottomSheetContext';
 
 const AccountScreen = ({ handleCloseSheet }) => {
   const size = 25;
   const navigation = useNavigation();
   const { user } = useContext(AuthContext);
+  const openSheet = useContext(BottomSheetContext);
 
   const navigateToLogin = () => {
     navigation.navigate('Authentication', {
@@ -25,6 +27,10 @@ const AccountScreen = ({ handleCloseSheet }) => {
       screen: 'UserInfo',
     });
     handleCloseSheet()
+  };
+
+  const navigateToSettings = () => {
+    openSheet('Settings');
   };
 
   return (
@@ -46,7 +52,9 @@ const AccountScreen = ({ handleCloseSheet }) => {
           >
             <ArrowRightOnRectangleIcon size={size} color={Colors.onBackground}
             />
-            <Text className='text-xl font-bold pl-3'>{user ? (user.isAnonymous ? 'No User Logged In' : user.uid) : 'No User'}</Text>
+            <Text className='text-xl font-bold pl-3'>
+              {user ? (user.isAnonymous ? 'No User Logged In' : user.displayName) : 'No User Logged In'}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             className='flex-row items-center h-14 rounded-md mb-3 pl-4'
@@ -65,6 +73,15 @@ const AccountScreen = ({ handleCloseSheet }) => {
             <UserIcon size={size} color={Colors.onBackground}
             />
             <Text className='text-xl font-bold pl-3'>Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            className='flex-row items-center h-14 rounded-md mb-3 pl-4'
+            style={{ backgroundColor: Colors.surface}}
+            onPress={navigateToSettings}
+          >
+            <Cog6ToothIcon size={size} color={Colors.onBackground}
+            />
+            <Text className='text-xl font-bold pl-3'>Settings</Text>
           </TouchableOpacity>
         </View>
         

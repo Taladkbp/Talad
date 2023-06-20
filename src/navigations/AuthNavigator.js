@@ -4,6 +4,7 @@ import UserInfoScreen from '../screens/account_screens/UserInfoScreen.js';
 import LoginScreen from '../screens/login_screens/LoginScreen';
 import OTPVerificationScreen from '../screens/login_screens/OTPVerificationScreen';
 import PhoneVerificationScreen from '../screens/login_screens/PhoneVerificationScreen';
+import SettingsScreen from '../screens/account_screens/SettingsScreen.js';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,11 @@ const AuthNavigator = () => {
       <Stack.Screen
         name='UserInfo'
         component={UserInfoScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name='Settings'
+        component={SettingsScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

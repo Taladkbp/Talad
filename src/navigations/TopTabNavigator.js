@@ -10,7 +10,7 @@ const TopTabNavigator = () => {
   return (
     <View>
       <View className='flex-row p-2 justify-between'>
-        <TouchableOpacity onPress={openSheet}>
+        <TouchableOpacity onPress={() => openSheet('Account')}>
           <UserCircleIcon color={Colors.onUserIcon} size={34}/>
         </TouchableOpacity>
         <Button

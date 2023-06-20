@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoginManager } from 'react-native-fbsdk-next'
+import { AccessToken, LoginManager } from 'react-native-fbsdk-next'
 import auth from '@react-native-firebase/auth';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -12,6 +12,8 @@ const FacebookLoginButton = () => {
     if (result.isCancelled) {
       throw 'User cancelled the login process';
     }
+
+    const data = await AccessToken.getCurrentAccessToken();
 
     if (!data) {
       throw 'Something went wrong obtaining acces token';
