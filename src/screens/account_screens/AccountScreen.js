@@ -13,7 +13,7 @@ const AccountScreen = ({ handleCloseSheet }) => {
   const size = 25;
   const navigation = useNavigation();
   const { user } = useContext(AuthContext);
-  const openSheet = useContext(BottomSheetContext);
+  const { openSheet } = useContext(BottomSheetContext);
 
   const navigateToLogin = () => {
     navigation.navigate('Authentication', {

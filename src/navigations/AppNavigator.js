@@ -15,15 +15,22 @@ const AppNavigator = () => {
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => ['98%'], []);
   const [content, setContent] = useState('Account');
+  const [screenStack, setScreenStack] = useState(['Account']);
 
   const handleOpenSheet = useCallback((sheetContent) => {
     setContent(sheetContent);
+    setScreenStack((prevStack) => [...prevStack, sheetContent]);
     bottomSheetRef.current.snapToIndex(0)
   }, [setContent]);
 
   const handleCloseSheet = useCallback(() => {
-    bottomSheetRef.current.close();
-  }, []);
+    setScreenStack((prevStack) => prevStack.slice(0, prevStack.length - 1));
+    if(screenStack.length > 1) {
+      setContent(screenStack[screenStack.length - 2]);
+    } else {
+      bottomSheetRef.current.close();
+    }
+  }, [screenStack]);
   
   const renderContent = () => {
       return content === 'Account' ? (
@@ -35,7 +42,7 @@ const AppNavigator = () => {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <BottomSheetContext.Provider value={handleOpenSheet}>
+      <BottomSheetContext.Provider value={{ openSheet: handleOpenSheet, setScreenStack }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen 
             name='SellerApp' 

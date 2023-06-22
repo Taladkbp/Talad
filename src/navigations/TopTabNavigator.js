@@ -6,7 +6,8 @@ import BottomSheetContext from '../components/BottomSheetContext.js';
 import { Colors } from '../theme/colors.js';
 
 const TopTabNavigator = () => {
-  const openSheet = useContext(BottomSheetContext)
+  const { openSheet, setScreenStack } = useContext(BottomSheetContext);
+
   return (
     <View>
       <View className='flex-row p-2 justify-between'>
