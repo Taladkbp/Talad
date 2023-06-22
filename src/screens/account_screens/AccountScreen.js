@@ -35,7 +35,7 @@ const AccountScreen = ({ handleCloseSheet }) => {
 
   return (
     <SafeAreaView className='flex-1' style={{backgroundColor: Colors.background}}>
-        <View className='flex-row justify-between items-center mb-4 mt-4' >
+        <View className='flex-row justify-between items-center mb-4 -mt-7' >
           <View className='w-16'/>
           <Text className='text-center text-xl font-bold w-1/3'> Account </Text>
           <TouchableOpacity 
@@ -44,7 +44,7 @@ const AccountScreen = ({ handleCloseSheet }) => {
               <Text className='text-xl font-bold'>Done</Text> 
           </TouchableOpacity>
         </View>
-        <View className='flex-1 px-5 mt-5'>
+        <View className='flex-1 px-5 mt-2'>
         <TouchableOpacity
             className='flex-row items-center h-20 rounded-md mb-3 pl-4'
             style={{ backgroundColor: Colors.surface}}

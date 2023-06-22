@@ -4,7 +4,7 @@ import BottomSheetContext from './BottomSheetContext';
 import { ArrowLeftIcon } from 'react-native-heroicons/solid'
 
 const BottomSheetBackButton = () => {
-  const { openSheet, screenStack, setScreenStack } = useContext(BottomSheetContext);
+  const { openSheet, setScreenStack } = useContext(BottomSheetContext);
 
   const goBack = () => {
     setScreenStack(prevStack => {
