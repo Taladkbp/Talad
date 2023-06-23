@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   const bottomSheetRef = useRef(null);
-  const snapPoints = useMemo(() => ['93%'], []);
+  const snapPoints = useMemo(() => ['98%'], []);
   const [content, setContent] = useState('Account');
   const [screenStack, setScreenStack] = useState(['Account']);
 

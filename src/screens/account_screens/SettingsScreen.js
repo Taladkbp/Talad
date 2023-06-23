@@ -26,7 +26,7 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView className='flex-1' style={{backgroundColor: Colors.background}}>
-      <View className='flex-row justify-between items-center mb-4 -mt-7' >
+      <View className='flex-row justify-between items-center mb-4' >
         <BottomSheetBackButton/>
         <Text className='text-center text-xl font-bold w-1/3'> Settings </Text>
         <View className='w-16'/>
