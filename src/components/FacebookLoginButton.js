@@ -11,7 +11,8 @@ const FacebookLoginButton = () => {
 
   const onFacebookButtonPress = async () => {
     try{
-      const result = await LoginManager.logInWithPermissions(['public_profile', 'email', 'publish_video']);
+      const result = await LoginManager.logInWithPermissions(['public_profile', 'email', 'publish_video',
+                                                              'pages_manage_posts', 'pages_read_engagement']);
 
       if (result.isCancelled) {
         throw 'User cancelled the login process';
