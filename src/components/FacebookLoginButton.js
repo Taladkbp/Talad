@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next'
 import auth from '@react-native-firebase/auth';
 import { TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import { TokenContext } from './TokenContext';
 
 const FacebookLoginButton = () => {
   const navigation = useNavigation();
+  const [token, setToken] = useContext(TokenContext);
 
   const onFacebookButtonPress = async () => {
     try{
@@ -25,7 +27,7 @@ const FacebookLoginButton = () => {
       }
 
       const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
-
+      setToken(data.accessToken);
       await auth().signInWithCredential(facebookCredential);
 
       navigation.navigate('SellerApp', {

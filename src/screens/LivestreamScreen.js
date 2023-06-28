@@ -1,16 +1,19 @@
 import { Camera, CameraType } from 'expo-camera';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { SafeAreaView } from 'react-native'
 import { View, TouchableOpacity } from 'react-native'
 import { Button, Text } from 'react-native-paper';
 import Ionicons from '@expo/vector-icons/Ionicons';
-
 import { Colors } from '../theme/colors';
+import auth from '@react-native-firebase/auth';
+import { AccessToken } from 'react-native-fbsdk-next';
+import LoginModal from './login_screens/LoginModal';
 
 const LivestreamScreen = () => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [recording, setRecording] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -27,11 +30,20 @@ const LivestreamScreen = () => {
     );
   }
 
-  function toggleCameraType() {
+  const startLiveStream = async () => {
+    let data;
+
+    if (auth().currentUser) {
+      data = await AccessToken.getCurrentAccessToken();
+      console.log(data)
+    }
+  }
+
+  const toggleCameraType = () => {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back))
   }
 
-  function toggleMicrophone() { // Add this function
+  const toggleMicrophone = () => { // Add this function
     setRecording(current => !current)
   }
 
@@ -44,6 +56,7 @@ const LivestreamScreen = () => {
               <Button 
                 buttonColor={Colors.primary} 
                 mode='contained'
+                onPress={() => setModalVisible(true)}
                 icon={({ color, size }) => <Ionicons name='radio' color={'#ffffff'} size={22} />}
                 >
                 Go Live
@@ -60,6 +73,8 @@ const LivestreamScreen = () => {
           </View>
         </View>
       </Camera>
+
+      <LoginModal visible={modalVisible} setVisible={setModalVisible}/>
     </SafeAreaView>
   )
 }

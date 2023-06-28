@@ -5,6 +5,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import AppNavigator from './navigations/AppNavigator';
 import {Colors} from './theme/colors'
 import AuthProvider  from './auth/AuthProvider';
+import { TokenProvider } from './components/TokenContext';
 
 const theme = {
   ...DefaultTheme,
@@ -17,11 +18,13 @@ const theme = {
 export default function App() {
   return (
     <AuthProvider>
-      <PaperProvider theme={theme}>
-        <NavigationContainer>
-            <AppNavigator/>
-        </NavigationContainer>
-      </PaperProvider>
+      <TokenProvider>
+        <PaperProvider theme={theme}>
+          <NavigationContainer>
+              <AppNavigator/>
+          </NavigationContainer>
+        </PaperProvider>
+      </TokenProvider>
     </AuthProvider>
   );
 };
