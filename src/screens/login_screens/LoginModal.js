@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { XCircleIcon } from 'react-native-heroicons/solid'
 import { Colors } from '../../theme/colors'
+import FacebookLoginButton from '../../components/FacebookLoginButton'
 
 
 const LoginModal = ({visible, setVisible}) => {
@@ -26,6 +27,7 @@ const LoginModal = ({visible, setVisible}) => {
           </View>
           <Text className='text-center text-2xl font-bold my-2'>Login Required</Text>
           <Text className='text-center mb-4'>Please login to continue</Text>
+          <FacebookLoginButton/>
         </View>
       </View>
     </Modal>
