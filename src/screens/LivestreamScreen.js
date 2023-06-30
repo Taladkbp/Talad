@@ -1,19 +1,22 @@
-import { Camera, CameraType } from 'expo-camera';
-import React, { useEffect, useState, useContext } from 'react'
-import { SafeAreaView } from 'react-native'
-import { View, TouchableOpacity } from 'react-native'
-import { Button, Text } from 'react-native-paper';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Colors } from '../theme/colors';
 import auth from '@react-native-firebase/auth';
+import { Audio } from 'expo-av';
+import { Camera, CameraType } from 'expo-camera';
+import React, { useContext, useEffect, useState } from 'react';
+import { SafeAreaView, TouchableOpacity, View } from 'react-native';
 import { AccessToken } from 'react-native-fbsdk-next';
+import { Button, Text } from 'react-native-paper';
+import { AuthContext } from '../auth/AuthProvider';
+import { Colors } from '../theme/colors';
 import LoginModal from './login_screens/LoginModal';
 
 const LivestreamScreen = () => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [recording, setRecording] = useState(false);
+  const [microphonePermission, setMicrophonePermission] = useState(null)
   const [modalVisible, setModalVisible] = useState(false);
+  const { user } = useContext(AuthContext);
 
   if (!permission) {
     // Camera permissions are still loading
@@ -33,7 +36,9 @@ const LivestreamScreen = () => {
   const startLiveStream = async () => {
     let data;
 
-    if (auth().currentUser) {
+    if (!user || !user.providerData.some(provider => provider.providerId === 'facebook.com')) {
+      setModalVisible(true)
+    } else {
       data = await AccessToken.getCurrentAccessToken();
       console.log(data)
     }
@@ -56,7 +61,7 @@ const LivestreamScreen = () => {
               <Button 
                 buttonColor={Colors.primary} 
                 mode='contained'
-                onPress={() => setModalVisible(true)}
+                onPress={startLiveStream}
                 icon={({ color, size }) => <Ionicons name='radio' color={'#ffffff'} size={22} />}
                 >
                 Go Live
@@ -73,7 +78,6 @@ const LivestreamScreen = () => {
           </View>
         </View>
       </Camera>
-
       <LoginModal visible={modalVisible} setVisible={setModalVisible}/>
     </SafeAreaView>
   )
