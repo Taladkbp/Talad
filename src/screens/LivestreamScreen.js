@@ -1,5 +1,4 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import auth from '@react-native-firebase/auth';
 import { Audio } from 'expo-av';
 import { Camera, CameraType } from 'expo-camera';
 import React, { useContext, useEffect, useState } from 'react';
@@ -12,23 +11,53 @@ import LoginModal from './login_screens/LoginModal';
 
 const LivestreamScreen = () => {
   const [type, setType] = useState(CameraType.back);
-  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [cameraPermission, setCameraPermission] = useState(null);
   const [recording, setRecording] = useState(false);
-  const [microphonePermission, setMicrophonePermission] = useState(null)
+  const [microphonePermission, setMicrophonePermission] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const { user } = useContext(AuthContext);
 
-  if (!permission) {
+  const requestCameraPermission = async () => {
+    console.log("Requesting camera permission...");
+    const { status } = await Camera.requestCameraPermissionsAsync();
+    console.log("Camera permission status:", status);
+    setCameraPermission(status === 'granted');
+  };
+
+  const requestMicrophonePermission = async () => {
+    // const { status } = await Audio.requestPermissionsAsync();
+    // setMicrophonePermission(status === 'granted');
+  };
+
+  useEffect(() => {
+    requestCameraPermission();
+    requestMicrophonePermission();
+  }, []);
+
+  // Bring back the || microphonePermission === null
+  if (cameraPermission === null) {
     // Camera permissions are still loading
     return <View />;
   }
 
-  if (!permission.granted) {
+  if (!cameraPermission) {
     // Camera permissions are not granted yet
     return (
       <SafeAreaView className='flex-1 justify-center items-center'>
         <Text className='mb-4 text-center'>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="Grant permission" />
+        <Button
+          icon="camera"
+          mode="contained"
+          onPress={requestCameraPermission}>
+            Grant Camera Permission
+          </Button>
+        <Button
+          className='mt-2'
+          icon="microphone"
+          mode="contained"
+          onPress={requestMicrophonePermission}>
+            Grant Microphone Permission
+        </Button>
       </SafeAreaView>
     );
   }
