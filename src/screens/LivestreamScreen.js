@@ -102,7 +102,17 @@ const LivestreamScreen = () => {
     const data = await AccessToken.getCurrentAccessToken();
 
     if (data) {
-      axios.post(`https://graph.facebook.com/${liveVideoId}`)
+      axios.post(`https://graph.facebook.com/${liveVideoId}`, {
+        access_token: data.accessToken,
+        end_live_video: true
+      })
+      .then(response => {
+        console.log('Live video stopped:', response.data)
+        setLiveVideoId(null);
+      })
+      .catch(error => {
+        console.log('Failed to stop live video: ', error)
+      })
     }
   };
 
@@ -131,7 +141,7 @@ const LivestreamScreen = () => {
               <Button 
                 buttonColor={Colors.primary} 
                 mode='contained'
-                onPress={startLiveStream}
+                onPress={stopLiveStream}
                 icon={({ color, size }) => <Ionicons name='radio' color={'#ffffff'} size={22} />}
                 >
                 Stop
