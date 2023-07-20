@@ -87,6 +87,7 @@ const LivestreamScreen = () => {
         })
         .then(response => {
           console.log('Live video ID:', response.data.id);
+          console.log('Stream URL:', response.data.stream_url);
           setLiveVideoId(response.data.id);
         })
         .catch(error => {
@@ -115,6 +116,8 @@ const LivestreamScreen = () => {
       })
     }
   };
+
+  
 
   const toggleCameraType = () => {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back))
